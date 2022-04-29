@@ -1,0 +1,43 @@
+{
+  "name": "alexa-frag-mich",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "node dev.js",
+    "build": "jest && rimraf dist && gulp",
+    "deploy": "npm run build && ask deploy",
+    "test:unit": "jest --coverage",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
+  },
+  "dependencies": {
+    "ask-sdk-core": "^2.12.1",
+    "ask-sdk-model": "^1.38.1",
+    "i18next": "^21.6.16",
+    "i18next-sprintf-postprocessor": "^0.2.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.9",
+    "@types/eslint": "^6.1.1",
+    "@types/express": "^4.17.13",
+    "@types/i18next-sprintf-postprocessor": "^0.2.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^12.7.8",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "express": "^4.18.0",
+    "gulp": "^4.0.2",
+    "gulp-json-editor": "^2.5.6",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "jest": "^26.6.3",
+    "ngrok": "^4.3.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

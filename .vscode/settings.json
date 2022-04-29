@@ -1,0 +1,15 @@
+{
+  "eslint.validate": ["javascript", "typescript"],
+  "files.exclude": {
+    "**/node_modules": true,
+    //"**/dist": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true
+  },
+  "typescript.referencesCodeLens.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "npm.exclude": ["**/dist"]
+}

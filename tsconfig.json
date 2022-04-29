@@ -1,0 +1,20 @@
+{
+  "extends": "@tsconfig/node12/tsconfig.json",
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowJs": false,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "types": ["@types/jest", "node"],
+    "paths": {
+      "@/*": ["lambda/custom/*"]
+    }
+  },
+  "exclude": ["/**/node_modules", "lambda/local/", "test", "**/__mocks__"]
+}
