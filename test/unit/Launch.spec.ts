@@ -9,6 +9,8 @@ describe("Launch", () => {
         locale: LocaleTypes.deDE,
       })
     );
-    expect(response).toMatchObject(ssml(/Du kannst jetzt Hallo sagen/gi));
+    expect(response).toMatchObject(
+      ssml(/Was soll ich Dich fragen\? Hauptstädte oder Nachbarsländer\?/gi)
+    );
   });
 });

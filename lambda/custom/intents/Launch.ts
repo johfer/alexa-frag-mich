@@ -1,5 +1,5 @@
 import { RequestHandler } from "ask-sdk-core";
-import { RequestTypes, Strings } from "../lib/constants";
+import { RequestTypes, Messages } from "../lib/constants";
 import { IsType, GetRequestAttributes } from "../lib/helpers";
 
 export const Launch: RequestHandler = {
@@ -9,12 +9,9 @@ export const Launch: RequestHandler = {
   handle(handlerInput) {
     const { t } = GetRequestAttributes(handlerInput);
 
-    const speechText = t(Strings.WELCOME_MSG);
+    const speechText = t(Messages.WELCOME_MSG);
+    const helpText = t(Messages.WELCOME_HELP_MSG);
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .withSimpleCard(t(Strings.SKILL_NAME), speechText)
-      .getResponse();
+    return handlerInput.responseBuilder.speak(speechText).reprompt(helpText).getResponse();
   },
 };

@@ -21,7 +21,7 @@ export type PartialDeep<T> = {
  * @param value
  */
 export function partial<T>(value: PartialDeep<T>): T {
-  return value as any as T;
+  return value as unknown as T;
 }
 
 /**

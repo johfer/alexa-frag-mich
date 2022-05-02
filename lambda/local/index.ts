@@ -4,7 +4,7 @@ import { AddressInfo } from "net";
 import { LambdaHandler } from "ask-sdk-core/dist/skill/factory/BaseSkillFactory";
 import { RequestEnvelope } from "ask-sdk-model";
 
-import { handler as helloHandler } from "../custom";
+import { handler } from "../custom";
 
 function CreateHandler(handler: LambdaHandler): express.RequestHandler {
   return (req, res) => {
@@ -28,4 +28,4 @@ const listener = server.listen(process.env.port || process.env.PORT || 3980, fun
 server.use(bodyParser.json());
 
 // connect the lambda functions to http
-server.post("/", CreateHandler(helloHandler));
+server.post("/", CreateHandler(handler));

@@ -9,9 +9,13 @@ export enum IntentTypes {
   Help = "AMAZON.HelpIntent",
   Stop = "AMAZON.StopIntent",
   Cancel = "AMAZON.CancelIntent",
+  Pause = "AMAZON.PauseIntent",
+  StartOver = "AMAZON.StartOverIntent",
   Fallback = "AMAZON.FallbackIntent",
+  Repeat = "AMAZON.RepeatIntent",
 
-  HelloWorld = "HelloWorldIntent",
+  Quiz = "QuizIntent",
+  Answer = "AnswerIntent",
 }
 
 export enum ErrorTypes {
@@ -32,11 +36,13 @@ export enum LocaleTypes {
   jaJP = "ja-JP",
 }
 
-export enum Strings {
-  SKILL_NAME = "SKILL_NAME",
+export enum Messages {
   WELCOME_MSG = "WELCOME_MSG",
+  WELCOME_HELP_MSG = "WELCOME_HELP_MSG",
+  SCORE_MSG = "SCORE_MSG",
+  YES_MSG = "YES_MSG",
+  NO_MSG = "NO_MSG",
   GOODBYE_MSG = "GOODBYE_MSG",
-  HELLO_MSG = "HELLO_MSG",
   HELP_MSG = "HELP_MSG",
   ERROR_MSG = "ERROR_MSG",
   ERROR_UNEXPECTED_MSG = "ERROR_UNEXPECTED_MSG",

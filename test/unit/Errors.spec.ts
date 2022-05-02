@@ -9,6 +9,10 @@ describe("Errors", () => {
         locale: LocaleTypes.deDE,
       })
     );
-    expect(response).toMatchObject(ssml(/Ich verstehe dich nicht, du Wurm/gi));
+    expect(response).toMatchObject(
+      ssml(
+        /Ich verstehe Dich nicht.<amazon:effect name='whispered'>Streng Dich mehr an\.<\/amazon:effect>/gi
+      )
+    );
   });
 });

@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "hallo welt",
+      "invocationName": "frag mich",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -12,20 +12,75 @@
           "samples": []
         },
         {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": []
+        },
+        {
           "name": "AMAZON.StopIntent",
           "samples": []
         },
         {
-          "name": "HelloWorldIntent",
-          "slots": [],
-          "samples": ["hallo", "wie geht's dir", "sag hallo welt", "sag hallo"]
+          "name": "QuizIntent",
+
+          "samples": ["{Subject}", "frag mich {Subject}"],
+          "slots": [
+            {
+              "name": "Subject",
+              "type": "SUBJECT",
+              "samples": []
+            }
+          ]
+        },
+        {
+          "name": "AnswerIntent",
+          "samples": ["{CAPITALS_ID}", "{NEIGHBOURING_COUNTRIES_ID}"],
+          "slots": [
+            {
+              "name": "CAPITALS_ID",
+              "type": "AMAZON.City",
+              "samples": []
+            },
+            {
+              "name": "NEIGHBOURING_COUNTRIES_ID",
+              "type": "AMAZON.Country",
+              "samples": []
+            }
+          ]
         },
         {
           "name": "AMAZON.FallbackIntent",
           "samples": []
         }
       ],
-      "types": []
+      "types": [
+        {
+          "name": "SUBJECT",
+          "values": [
+            {
+              "id": "CAPITALS_ID",
+              "name": {
+                "value": "Hauptstädte",
+                "synonyms": []
+              }
+            },
+            {
+              "id": "NEIGHBOURING_COUNTRIES_ID",
+              "name": {
+                "value": "Nachbarsländer",
+                "synonyms": []
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }

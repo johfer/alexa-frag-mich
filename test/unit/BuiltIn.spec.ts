@@ -9,7 +9,9 @@ describe("BuiltIn Intents", () => {
         locale: LocaleTypes.deDE,
       })
     );
-    expect(response).toMatchObject(ssml(/Du kannst Hallo zu mir sagen/gi));
+    expect(response).toMatchObject(
+      ssml(/Folgendes verstehe ich: 'Frag mich Hauptstädte', 'Frag mich Nachbarsländer', oder 'Stop'/gi)
+    );
   });
 
   it("Stop", async () => {
@@ -39,6 +41,10 @@ describe("BuiltIn Intents", () => {
         locale: LocaleTypes.deDE,
       })
     );
-    expect(response).toMatchObject(ssml(/Ich verstehe dich nicht, du Wurm/gi));
+    expect(response).toMatchObject(
+      ssml(
+        /Ich verstehe Dich nicht.<amazon:effect name='whispered'>Streng Dich mehr an\.<\/amazon:effect>/gi
+      )
+    );
   });
 });

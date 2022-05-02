@@ -1,6 +1,6 @@
 import { ErrorHandler } from "ask-sdk-core";
 import { GetRequestAttributes } from "../lib/helpers";
-import { Strings, ErrorTypes } from "../lib/constants";
+import { Messages, ErrorTypes } from "../lib/constants";
 
 /**
  * Handles ErrorTypes.Unexpected errors which should be thrown when something
@@ -15,6 +15,6 @@ export const Unexpected: ErrorHandler = {
 
     const { t } = GetRequestAttributes(handlerInput);
 
-    return handlerInput.responseBuilder.speak(t(Strings.ERROR_UNEXPECTED_MSG)).getResponse();
+    return handlerInput.responseBuilder.speak(t(Messages.ERROR_UNEXPECTED_MSG)).getResponse();
   },
 };

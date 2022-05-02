@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { HandlerInput } from "ask-sdk-core";
-import { IntentRequest, services } from "ask-sdk-model";
+import { IntentRequest } from "ask-sdk-model";
+import { sprintf } from "sprintf-js";
 import { RequestAttributes, Slots, SlotValues, SessionAttributes } from "../interfaces";
 import { RequestTypes, ErrorTypes } from "./constants";
 
@@ -36,49 +38,6 @@ export function IsType(handlerInput: HandlerInput, ...types: string[]): boolean 
 }
 
 /**
- * Checks if the request matches the given intent and dialogState.
- *
- * @param handlerInput
- * @param intent
- * @param state
- */
-export function IsIntentWithDialogState(
-  handlerInput: HandlerInput,
-  intent: string,
-  state: string
-): boolean {
-  return (
-    handlerInput.requestEnvelope.request.type === RequestTypes.Intent &&
-    handlerInput.requestEnvelope.request.intent.name === intent &&
-    handlerInput.requestEnvelope.request.dialogState === state
-  );
-}
-
-/**
- * Checks if the request matches the given intent with a non COMPLETED dialogState.
- *
- * @param handlerInput
- * @param intent
- */
-export function IsIntentWithIncompleteDialog(handlerInput: HandlerInput, intent: string): boolean {
-  return (
-    handlerInput.requestEnvelope.request.type === RequestTypes.Intent &&
-    handlerInput.requestEnvelope.request.intent.name === intent &&
-    handlerInput.requestEnvelope.request.dialogState !== "COMPLETED"
-  );
-}
-
-/**
- * Checks if the request matches the given intent with the COMPLETED dialogState.
- *
- * @param handlerInput
- * @param intent
- */
-export function IsIntentWithCompleteDialog(handlerInput: HandlerInput, intent: string): boolean {
-  return IsIntentWithDialogState(handlerInput, intent, "COMPLETED");
-}
-
-/**
  * Gets the request attributes and casts it to our custom RequestAttributes type.
  *
  * @param handlerInput
@@ -92,19 +51,10 @@ export function GetRequestAttributes(handlerInput: HandlerInput): RequestAttribu
  *
  * @param handlerInput
  */
-export function GetSessionAttributes(handlerInput: HandlerInput): SessionAttributes {
-  return handlerInput.attributesManager.getSessionAttributes() as SessionAttributes;
-}
-
-/**
- * Gets the directive service client.
- *
- * @param handlerInput
- */
-export function GetDirectiveServiceClient(
-  handlerInput: HandlerInput
-): services.directive.DirectiveServiceClient {
-  return handlerInput.serviceClientFactory!.getDirectiveServiceClient();
+export function GetSessionAttributes(handlerInput: HandlerInput): SessionAttributes | null {
+  if (handlerInput.requestEnvelope.session)
+    return handlerInput.attributesManager.getSessionAttributes() as SessionAttributes;
+  return null;
 }
 
 /**
@@ -115,7 +65,7 @@ export function GetDirectiveServiceClient(
  * @param request
  * @param slotName
  */
-export function ResetSlotValue(request: IntentRequest, slotName: string) {
+export function ResetSlotValue(request: IntentRequest, slotName: string): void {
   if (request.intent.slots) {
     const slot = request.intent.slots[slotName];
     if (slot) {
@@ -131,7 +81,7 @@ export function ResetSlotValue(request: IntentRequest, slotName: string) {
  *
  * @param request
  */
-export function ResetUnmatchedSlotValues(handlerInput: HandlerInput, slots: SlotValues) {
+export function ResetUnmatchedSlotValues(handlerInput: HandlerInput, slots: SlotValues): void {
   if (handlerInput.requestEnvelope.request.type === RequestTypes.Intent) {
     const request = handlerInput.requestEnvelope.request;
 
@@ -297,25 +247,12 @@ export function Random<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-/**
- * Returns a VoicePlayer.Speak directive with the given speech. Useful for sending progressive responses.
- *
- * @param handlerInput
- * @param speech
- */
-export function VoicePlayerSpeakDirective(
-  handlerInput: HandlerInput,
-  speech?: string
-): services.directive.SendDirectiveRequest {
-  const requestId = handlerInput.requestEnvelope.request.requestId;
+export function getQuestion(attributes: SessionAttributes | null): string {
+  if (!attributes) return "";
+  return sprintf(attributes.questionTemplate, attributes.counter, attributes.quizItem.question);
+}
 
-  return {
-    directive: {
-      type: "VoicePlayer.Speak",
-      speech: speech,
-    },
-    header: {
-      requestId,
-    },
-  };
+export function getAnswer(attributes: SessionAttributes | null): string {
+  if (!attributes) return "";
+  return sprintf(attributes.answerTemplate, attributes.quizItem.question, attributes.quizItem.answer);
 }

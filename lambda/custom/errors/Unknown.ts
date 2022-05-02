@@ -1,6 +1,6 @@
 import { ErrorHandler } from "ask-sdk-core";
 import { GetRequestAttributes } from "../lib/helpers";
-import { Strings } from "../lib/constants";
+import { Messages } from "../lib/constants";
 
 /**
  * Handles unknown errors. Should be placed at the end, as it will catch
@@ -15,7 +15,7 @@ export const Unknown: ErrorHandler = {
 
     const { t } = GetRequestAttributes(handlerInput);
 
-    const speechText = t(Strings.ERROR_MSG);
+    const speechText = t(Messages.ERROR_MSG);
 
     return handlerInput.responseBuilder.speak(speechText).reprompt(speechText).getResponse();
   },

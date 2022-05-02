@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node dev.js",
+    "dialog": "ask dialog",
     "build": "jest && rimraf dist && gulp",
     "deploy": "npm run build && ask deploy",
     "test:unit": "jest --coverage",
@@ -13,7 +14,8 @@
     "ask-sdk-core": "^2.12.1",
     "ask-sdk-model": "^1.38.1",
     "i18next": "^21.6.16",
-    "i18next-sprintf-postprocessor": "^0.2.2"
+    "i18next-sprintf-postprocessor": "^0.2.2",
+    "sprintf-js": "^1.1.2"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.9",
@@ -22,6 +24,7 @@
     "@types/i18next-sprintf-postprocessor": "^0.2.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^12.7.8",
+    "@types/sprintf-js": "^1.1.2",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
     "eslint": "^6.4.0",
