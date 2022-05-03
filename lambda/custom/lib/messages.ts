@@ -41,7 +41,6 @@ const messages: Resource = {
         "als ob",
         "au weia",
         "da lachen ja die hühner",
-        "ist nicht dein ernst",
         "manometer",
         "nö",
         "oh mann",

@@ -25,13 +25,15 @@ export const Answer: RequestHandler = {
     const answer = slots[subject];
     console.log(item);
     console.log(slots);
-    //if (!answer?.isMatch)
-    //  return handlerInput.responseBuilder.speak(t(Messages.ERROR_MSG)).reprompt("").getResponse();
+    if (!answer?.isMatch)
+      return handlerInput.responseBuilder.speak(t(Messages.ERROR_MSG)).reprompt("").getResponse();
 
-    const expected = item.answer.toString().toLowerCase();
-    const actual = answer?.value.toString().toLowerCase();
+    const expected: string[] = (
+      item.synonyms ? item.synonyms.map((el: string) => el.toLowerCase()) : []
+    ).concat(item.answer.toLowerCase());
+    const actual = answer?.value.toLowerCase();
 
-    const isCorrect = actual === expected;
+    const isCorrect = expected.includes(actual);
 
     let output = "";
     if (isCorrect) {
