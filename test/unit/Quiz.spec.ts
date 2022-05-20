@@ -23,6 +23,6 @@ describe("Quiz", () => {
         },
       })
     );
-    expect(response).toMatchObject(ssml(/Wie heisst die Hauptstadt von/gi));
+    expect(response).toMatchObject(ssml(/Wie heisst die Hauptstadt/gi));
   });
 });
