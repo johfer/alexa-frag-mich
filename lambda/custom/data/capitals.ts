@@ -3,7 +3,7 @@ import { LocaleTypes } from "../lib/constants";
 export default {
   [LocaleTypes.deDE]: {
     questionTemplate: "Frage %u von 10: wie heisst die Hauptstadt %s?",
-    answerTemplate: "Die Hauptstadt von %s heisst %s.",
+    answerTemplate: "Die Hauptstadt %s heisst %s.",
     items: [
       { question: "von Afghanistan", answer: "Kabul" },
       { question: "von Ägypten", answer: "Kairo" },
