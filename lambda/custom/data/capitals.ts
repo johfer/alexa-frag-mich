@@ -147,7 +147,7 @@ export default {
       { question: "von Rumänien", answer: "Bukarest" },
       { question: "von Russland", answer: "Moskau" },
       { question: "von Saint Kitts und Nevis", answer: "Basseterre" },
-      { question: "von <lang xml:lang=“es-MX“>Santa Lucia</lang>", answer: "Castries" },
+      { question: "von <lang xml:lang='es-MX'>Santa Lucia</lang>", answer: "Castries" },
       { question: "von St. Vincent und die Grenadinen", answer: "Kingstown" },
       { question: "der Salomonen", answer: "Honiara" },
       { question: "von Sambia", answer: "Lusaka" },
